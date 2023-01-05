@@ -8,4 +8,4 @@ when you select a time, you can enter an event and save the event
 
 ## Screenshot
 
-![computer](assets)
+![computer](<assets/pvon11.github.io%20(2).png>)
