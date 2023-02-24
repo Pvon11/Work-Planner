@@ -8,7 +8,7 @@ when you select a time, you can enter an event and save the event into locL
 
 ## Screenshot
 
-![computer](<assets/pvon11.github.io%20(2).png>)
+![computer](<assets/pvon11.github.io%20(3).png>)
 
 ## Website
 
