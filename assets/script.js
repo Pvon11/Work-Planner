@@ -1,33 +1,37 @@
-// Wrap all code that interacts with the DOM in a call to jQuery to ensure that
-// the code isn't run until the browser has finished rendering all the elements
-// in the html.
-$(function calendar() {
-  buttons.on("click", function (event) {
-    event.preventDefault();
-    var textArea = $(this).siblings(".description").val();
-    var time = $(this).parent().attr("id");
-    localStorage.setItem(time, textArea);
+var date = dayjs();
+var currentTime = dayjs().hour();
+
+$("#currentDay").text(date.format("dddd, MMM D YYYY"));
+$(function () {
+  $(".saveBtn").on("click", function () {
+    var parentInfo = $(this).parent().attr("id");
+    var childInfo = $(this).siblings("textarea").val();
+    // sets above to localStorage
+    localStorage.setItem(parentInfo, childInfo);
+  });
+  //function to allow colors to change
+  $(".time-block").each(function () {
+    // generic timeslot
+    var timeSlot = $(this);
+    // makes slots into array and splits to change color
+    var slot = parseInt(timeSlot.attr("id").split("hour")[1]);
+
+    if (slot < currentTime) {
+      timeSlot.children("textarea").addClass("past");
+    } else if (slot == currentTime) {
+      timeSlot.children("textarea").addClass("present");
+    } else {
+      timeSlot.children("textarea").addClass("future");
+    }
   });
 
-  // Local storage.
-  $("#hour-9 .description").val(localStorage.getItem("hour-9"));
-  $("#hour-10 .description").val(localStorage.getItem("hour-10"));
-  $("#hour-11 .description").val(localStorage.getItem("hour-11"));
-  $("#hour-12 .description").val(localStorage.getItem("hour-12"));
-  $("#hour-13 .description").val(localStorage.getItem("hour-13"));
-  $("#hour-14 .description").val(localStorage.getItem("hour-14"));
-  $("#hour-15 .description").val(localStorage.getItem("hour-15"));
-  $("#hour-16 .description").val(localStorage.getItem("hour-16"));
-  $("#hour-17 .description").val(localStorage.getItem("hour-17"));
-
-  function colorBox() {
-    // Allows colors to change
-  }
-
-  setInterval(colorBox, 1000);
-
-  setInterval(function () {
-    $("#currentDay").text(dayjs().format("dddd, MMMM Do, YYYY"));
-    $("#currentTime").text(dayjs().format("hh:mm A"));
-  }, 1000);
+  $("#hour9 .description").val(localStorage.getItem("hour9"));
+  $("#hour10 .description").val(localStorage.getItem("hour10"));
+  $("#hour11 .description").val(localStorage.getItem("hour11"));
+  $("#hour12 .description").val(localStorage.getItem("hour12"));
+  $("#hour13 .description").val(localStorage.getItem("hour13"));
+  $("#hour14 .description").val(localStorage.getItem("hour14"));
+  $("#hour15 .description").val(localStorage.getItem("hour15"));
+  $("#hour16 .description").val(localStorage.getItem("hour16"));
+  $("#hour17 .description").val(localStorage.getItem("hour17"));
 });
